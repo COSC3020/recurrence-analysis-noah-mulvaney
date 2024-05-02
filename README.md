@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/OlW38W4k)
 # Recurrence Analysis -- Mystery Function
 
 Analyze the running time of the following recursive procedure as a function of
@@ -27,6 +28,13 @@ function mystery(n) {
 }
 ```
 
-Add your answer to this markdown file. [This
-page](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
-might help with the notation for mathematical expressions.
+Base case, $n \leq 1$: $T(n) = 1$  
+Recursive case: $T(n) = 3T(n/3)+n^5+1$  
+
+By expanding the recursive case to $i$ recursive levels:  
+$T(n) = 3 T(n/3^i)+3\left[n^5+(n/3)^5+(n/9)^5+\cdots\right]+3(i-1)+1$
+
+$n/3^i \leq 1$ gives $i=\log_3 n$
+
+By subsitution $i$ in the expanding recursive case, the sum of $(n/3^j)^5$ terms dominates. At $i=\log_3 n$, this sum is asympotically $O(n^5)$.  
+Therefore, the time complexity of `mystery(n)` is $O(n^5)$.
